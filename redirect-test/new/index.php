@@ -17,7 +17,6 @@
           content="http://www.nationalarchives.gov.uk/wp-content/uploads/sites/24/2016/06/logo-a-tna-600x315.jpg"/>
     <!-- / Yoast WordPress SEO plugin. -->
 
-    <link rel="stylesheet" href="button-variants.css">
     <link rel='stylesheet' id='tna-parent-styles-css'
           href='http://www.nationalarchives.gov.uk/wp-content/themes/tna-base/css/base-sass.css.min?ver=1.9'
           type='text/css' media='all'/>
@@ -300,33 +299,7 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="home-banner"
-                 style="background-image: url(http://www.nationalarchives.gov.uk/wp-content/uploads/sites/24/2017/10/hero-reformation1-1024x271.jpg);">
-                <div class="entry-wrapper">
-                    <div class="entry-content">
-                        <div class="content-type">Event</div>
-                        <h2>Reformation on the record</h2>
-                        <p>We're holding a conference to mark the 500th anniversary of the beginning of the Protestant
-                            Reformation, with the promulgation of Martin Luther’s 95 theses.</p>
-                        <div class="banner-call-to-action">
-                            <a id="hero-banner"
-                               href="https://www.eventbrite.co.uk/e/reformation-on-the-record-tickets-36436690121"
-                               data-gtm-name="Reformation on the record"
-                               data-gtm-id="hero_1"
-                               data-gtm-position="hero_position_banner"
-                               data-gtm-creative="homepage_hero_Event"
-                               class="ghost-button homepage-hero" aria-label="Reformation on the record" role="button"
-                               target="_blank">Find out more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
         <div class="flex-row equal-heights">
-
             <div class="col-card-4">
                 <div class="card"><a id="card-1"
                                      href="https://www.eventbrite.co.uk/e/flesh-and-blood-an-evening-with-stephen-mcgann-tickets-37121132306"
@@ -428,6 +401,31 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="home-banner"
+                 style="background-image: url(http://www.nationalarchives.gov.uk/wp-content/uploads/sites/24/2017/10/hero-reformation1-1024x271.jpg);">
+                <div class="entry-wrapper">
+                    <div class="entry-content">
+                        <div class="content-type">Event</div>
+                        <h2>Reformation on the record</h2>
+                        <p>We're holding a conference to mark the 500th anniversary of the beginning of the Protestant
+                            Reformation, with the promulgation of Martin Luther’s 95 theses.</p>
+                        <div class="banner-call-to-action">
+                            <a id="hero-banner"
+                               href="https://www.eventbrite.co.uk/e/reformation-on-the-record-tickets-36436690121"
+                               data-gtm-name="Reformation on the record"
+                               data-gtm-id="hero_1"
+                               data-gtm-position="hero_position_banner"
+                               data-gtm-creative="homepage_hero_Event"
+                               class="ghost-button homepage-hero" aria-label="Reformation on the record" role="button"
+                               target="_blank">Find out more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="flex-row equal-heights">

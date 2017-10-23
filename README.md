@@ -13,7 +13,7 @@ There is an active Google Optimize experiment on the site at [http://a-b-testing
 * 50% of visitors teal buttons
 * 50% of visitors black buttons with a teal border 
 
-These changes were made in the Google Optimize dashboard by creating a variant and assigning the related CSS styles. It requires an amendment to the Google Analytics code snippet as follows: 
+These changes were made in the Google Optimize dashboard by creating a variant and assigning the related CSS styles. It appears that each 'experiment' requires an amendment to the Google Analytics code snippet on the corresponding page. For example, the A/B test above needed an additional `require()`, a new `<style>` block and a new `(function(a,s,y,n,c,h,i.d.e) { ... })` call: 
 
 ```html
 <style>.async-hide { opacity: 0 !important} </style>
@@ -38,11 +38,31 @@ Having looked at the behaviour of this code it seems Google achieve this by:
 
 * applying the `.async-hide` class to prevent a flash of unstyled content as the page loads
 * injecting inline `<style>` blocks with the rules added via the dashboard
-* removing the `.async-hide` class to reveal the content, which now has the desired styles applied. 
+* removing the `.async-hide` class to reveal the content, which now has the desired styles applied
 
 Note: while this does not seem to significantly impact upon progressive enhancement since those users who are unable to run JavaScript will see the original variant, those users who do have JavaScript will have any content with `.async-hide` hidden from them until the relevant scripts have run. 
 
-## Development
+### Google Optimize Redirect Test
+
+There is an active Google Optimize experiment on the site at [http://a-b-testing-experiments.azurewebsites.net/redirect-test/](http://a-b-testing-experiments.azurewebsites.net/redirect-test/) which redirects 50% of users to a different page (within a `/new/` directory) that has a different layout.
+
+Having looked at this code it appears to: 
+
+* make use of the `.async-hide` technique (mentioned above)
+* uses JavaScript to redirect to perform a client-side redirect
+* appends a query string with the experiment ID **to all impressions, regardless of whether the user is redirected or not** as well as retain any existing query strings
+
+## Where variant testing options can be applied
+
+|                                               | Optimize A/B       | Redirect           | Example                                                                         |
+| --------------------------------------------- |:-------------:     | :--------:         |:------------------:                                                             |
+| Static URLs                                   | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/about/visit-us/`                            |
+| Static URLs with state passed in query string | :white_check_mark: | :white_check_mark: | `http://discovery.nationalarchives.gov.uk/results/r?_q=nelson&_col=200&_hb=tna` |
+| Static URLs with state passed in hash         | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/webarchive/atoz/#t`                         |
+
+-------
+
+## Local development with this repository
 
 ### Development environment
 
