@@ -52,13 +52,16 @@ Having looked at this code it appears to:
 * uses JavaScript to redirect to perform a client-side redirect
 * appends a query string with the experiment ID **to all impressions, regardless of whether the user is redirected or not** as well as retain any existing query strings
 
-## Where variant testing options can be applied
+## Where testing variants options can be applied
 
 |                                               | Optimize A/B       | Redirect           | Example                                                                         |
 | --------------------------------------------- |:-------------:     | :--------:         |:------------------:                                                             |
 | Static URLs                                   | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/about/visit-us/`                            |
 | Static URLs with state passed in query string | :white_check_mark: | :white_check_mark: | `http://discovery.nationalarchives.gov.uk/results/r?_q=nelson&_col=200&_hb=tna` |
 | Static URLs with state passed in hash         | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/webarchive/atoz/#t`                         |
+
+http://a-b-testing-experiments.azurewebsites.net/details/C4462857
+http://a-b-testing-experiments.azurewebsites.net/details/D8206854
 
 ## Observations / suggestions
 
