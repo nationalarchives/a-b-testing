@@ -60,6 +60,17 @@ Having looked at this code it appears to:
 | Static URLs with state passed in query string | :white_check_mark: | :white_check_mark: | `http://discovery.nationalarchives.gov.uk/results/r?_q=nelson&_col=200&_hb=tna` |
 | Static URLs with state passed in hash         | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/webarchive/atoz/#t`                         |
 
+## Observations / suggestions
+
+* Google Optimize seems to be a good option for us
+    * A/B testing for those changes that can be achieved through CSS alone (including the )
+* Experiments required their own scripts (identified with an 'experiment id')
+* The inclusion of experiment specific styles and scripts needs careful management - there's significant potential for script and style remnants to remain after an experiment has closed. Suggestion: update development guide and identify means for this to integrate into pull request process.
+* For A/B we opt for injected styles over avoid using the in-browser for reasons of:
+    * ease of re-use
+    * confidence in cross-browser rendering
+* This has been a technical dive into Google Optimize, we should look properly into the T&Cs etc. 
+
 -------
 
 ## Local development with this repository
