@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Provides simple sandbox for experimenting with variant testing in Google Optimize.
+Provides simple sandbox for exploring variant testing in Google Optimize.
 
 ## What's being explored
 
@@ -19,12 +19,14 @@ Provides simple sandbox for experimenting with variant testing in Google Optimiz
 
 ### The A/B Test
 
-In practical terms, what Google Optimize describe as a A/B test will be best suited to an A/B Template Test focused on creative treatment that can be **achieved through CSS alone**.
+In practical terms, what Google Optimize describe as a A/B test will be best suited to an A/B Template Test focused on creative treatment that can be achieved through: 
 
-There is an active Google Optimize experiment on the site at [http://a-b-testing-experiments.azurewebsites.net/](http://a-b-testing-experiments.azurewebsites.net/) which shows:
+* CSS alone
+* Minor text changes (within, for example, buttons but not ideally suited to changes within large blocks of text)
 
-* 50% of visitors teal buttons
-* 50% of visitors black buttons with a teal border 
+We have created an active Google Optimize experiment at [http://a-b-testing-experiments.azurewebsites.net/](http://a-b-testing-experiments.azurewebsites.net/) which shows 50% of visitors teal buttons and 50% of visitors black buttons with a teal border 
+
+#### Information for developers
 
 These changes were made in the Google Optimize dashboard by creating a variant and assigning the related CSS styles. It appears that each 'experiment' requires an amendment to the Google Analytics code snippet on the corresponding page. For example, the A/B test above needed an additional `require()`, a new `<style>` block and a new `(function(a,s,y,n,c,h,i.d.e) { ... })` call: 
 
@@ -57,17 +59,21 @@ Note: while this does not seem to significantly impact upon progressive enhancem
 
 ### Google Optimize Redirect Test
 
-In practical terms within a CMS environment, the Redirect Test will allow us to significantly amend the HTML, CSS and JavaScript. It therefore seems most suited to: 
-* the 'Template Test - Different Layout' and 'New Concept'
-* where the full URL is known A/B variants
+In practical terms within a CMS environment, the Redirect Test will allow us to significantly amend the structure, content CSS and JavaScript. It therefore seems most suited to: 
+* the 'Template Test - Different Layout' and 'New Concept' of A/B Tests
+* where the full URL is known
 
-There is an active Google Optimize experiment on the site at [http://a-b-testing-experiments.azurewebsites.net/redirect-test/](http://a-b-testing-experiments.azurewebsites.net/redirect-test/) which redirects 50% of users to a different page (within a `/new/` directory) that has a different layout.
+We have created an active Google Optimize redirect experiment at [http://a-b-testing-experiments.azurewebsites.net/redirect-test/](http://a-b-testing-experiments.azurewebsites.net/redirect-test/) which redirects 50% of users to a different page (within a `/new/` directory) that has a different layout.
 
 Having looked at this code it appears to: 
 
 * make use of the `.async-hide` technique (mentioned above)
-* uses JavaScript to redirect to perform a client-side redirect
+* uses JavaScript to perform a client-side redirect
 * appends a query string with the experiment ID **to all impressions, regardless of whether the user is redirected or not** as well as retain any existing query strings
+
+### Google Optimize Multivariate Test 
+
+Coming soon...
 
 ## Where testing variants options can be applied
 
@@ -76,9 +82,7 @@ Having looked at this code it appears to:
 | Static URLs                                   | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/about/visit-us/`                            |
 | Static URLs with state passed in query string | :white_check_mark: | :white_check_mark: | `http://discovery.nationalarchives.gov.uk/results/r?_q=nelson&_col=200&_hb=tna` |
 | Static URLs with state passed in hash         | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/webarchive/atoz/#t`                         |
-
-http://a-b-testing-experiments.azurewebsites.net/details/C4462857
-http://a-b-testing-experiments.azurewebsites.net/details/D8206854
+| Dynamic URLs with state passed in path        | :white_check_mark: |                    | `http://a-b-testing-experiments.azurewebsites.net/details/C4462857 http://a-b-testing-experiments.azurewebsites.net/details/D8206854` |
 
 ## Observations / suggestions
 
