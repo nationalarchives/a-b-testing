@@ -2,11 +2,24 @@
 
 ## Purpose
 
-Provides simple sandbox for experimenting with A/B Testing.
+Provides simple sandbox for experimenting with variant testing in Google Optimize.
 
-## What's being demonstrated
+## What's being explored
 
-### Google Optimize A/B Test
+* **A/B testing** - one design, group of elements or copy is compared to another, where a portion of live traffic is routed to each. Types of A/B test include:
+    * **Template test** - different layouts and/or creative treatment 
+    * **New concept test** - comparing two very distinct pages
+    * **Funnel test** - comparing different multi-page experiences
+* **Multivariate testing** - the technical and statistical aspects of a multivariate test can seem complicated and results can easily be ruined by poor methodology (WebTrends, Website Testing 101). There are two types of multivariate test **full factorial** and **fractional factorial** but understanding the basics of what constitutes a successfully designed test is important before undertaking one. Three key terms are:
+    * **Factor** an element of the page being tested
+    * **Level** content assigned to a specific factor to be tested
+    * **Experiment** makes use of both factor and level in unique combinations
+
+## Practical examples using Google Optimize
+
+### The A/B Test
+
+In practical terms, what Google Optimize describe as a A/B test will be best suited to an A/B Template Test focused on creative treatment that can be **achieved through CSS alone**.
 
 There is an active Google Optimize experiment on the site at [http://a-b-testing-experiments.azurewebsites.net/](http://a-b-testing-experiments.azurewebsites.net/) which shows:
 
@@ -43,6 +56,10 @@ Having looked at the behaviour of this code it seems Google achieve this by:
 Note: while this does not seem to significantly impact upon progressive enhancement since those users who are unable to run JavaScript will see the original variant, those users who do have JavaScript will have any content with `.async-hide` hidden from them until the relevant scripts have run. 
 
 ### Google Optimize Redirect Test
+
+In practical terms within a CMS environment, the Redirect Test will allow us to significantly amend the HTML, CSS and JavaScript. It therefore seems most suited to: 
+* the 'Template Test - Different Layout' and 'New Concept'
+* where the full URL is known A/B variants
 
 There is an active Google Optimize experiment on the site at [http://a-b-testing-experiments.azurewebsites.net/redirect-test/](http://a-b-testing-experiments.azurewebsites.net/redirect-test/) which redirects 50% of users to a different page (within a `/new/` directory) that has a different layout.
 
