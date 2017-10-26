@@ -2,6 +2,17 @@
 
 This repository provides a simple sandbox for exploring variant testing in Google Optimize and describes some options for how we might use it.
 
+## Summary
+
+* Google Optimize seems to be a good option that will allow us to:
+    * Perform experiments with quite fine grained control over cohorts, duration and device characteristics
+    * Conduct A/B testing ranging from small changes (involving minor stylistic changes or editorial changes) to larger structural, behaviour and multi-page experiences using the redirect variant.
+    * Link these experiments with our goals in Google Analytics
+* From a development perspective these experiments would need to be carefully managed to avoid remnants from previous experiments littering our code base. An update to our [Development Guide](https://github.com/nationalarchives/development-guide) is needed to support this.
+* This has been a technical dive into Google Optimize, we should look properly into the T&Cs etc and consider any necessary updates to The National Archives' [cookie policy](http://www.nationalarchives.gov.uk/legal/cookies.htm)
+
+-------
+
 ## What's being explored
 
 * **A/B testing** - one design, group of elements or copy is compared to another, where a portion of live traffic is routed to each. Types of A/B test include:
@@ -60,19 +71,22 @@ Note: while this does not seem to significantly impact upon progressive enhancem
 ### Google Optimize Redirect Test
 
 In practical terms within a CMS environment, the Redirect Test will allow us to significantly amend the structure, content CSS and JavaScript. It therefore seems most suited to: 
-* the 'Template Test - Different Layout' and 'New Concept' of A/B Tests
+* the 'Template Test - Different Layout' and 'New Concept' variants of A/B Tests
 * where the full URL is known
 
 We have created an active Google Optimize redirect experiment at [http://a-b-testing-experiments.azurewebsites.net/redirect-test/](http://a-b-testing-experiments.azurewebsites.net/redirect-test/) which redirects 50% of users to a different page (within a `/new/` directory) that has a different layout.
 
+![Redirect Test in Google Optimize](redirect-optimize.png)
 
-Having looked at this code it appears to: 
+#### Information for developers
+
+This test required the creation of a new page, inclusion of the necessary experiment code (as above) and setting up the redirect in Google Optimize.
+
+Having looked at code it appears to: 
 
 * make use of the `.async-hide` technique (mentioned above)
 * uses JavaScript to perform a client-side redirect
 * appends a query string with the experiment ID **to all impressions, regardless of whether the user is redirected or not** as well as retain any existing query strings
-
-![Redirect Test in Google Optimize](redirect-optimize.png)
 
 ### Google Optimize Multivariate Test 
 
@@ -86,19 +100,6 @@ Coming soon...
 | Static URLs with state passed in query string | :white_check_mark: | :white_check_mark: | `http://discovery.nationalarchives.gov.uk/results/r?_q=nelson&_col=200&_hb=tna` |
 | Static URLs with state passed in hash         | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/webarchive/atoz/#t`                         |
 | Dynamic URLs with state passed in path        | :white_check_mark: |                    | `http://a-b-testing-experiments.azurewebsites.net/details/C4462857 http://a-b-testing-experiments.azurewebsites.net/details/D8206854` |
-
-## Observations / suggestions
-
-* Google Optimize seems to be a good option for us
-    * A/B testing for those changes that can be achieved through CSS alone (including the )
-* Experiments required their own scripts (identified with an 'experiment id')
-* The inclusion of experiment specific styles and scripts needs careful management - there's significant potential for script and style remnants to remain after an experiment has closed. Suggestion: update development guide and identify means for this to integrate into pull request process.
-* For A/B we opt for injected styles over avoid using the in-browser for reasons of:
-    * ease of re-use
-    * confidence in cross-browser rendering
-* This has been a technical dive into Google Optimize, we should look properly into the T&Cs etc. 
-
--------
 
 ## Local development with this repository
 
