@@ -1,8 +1,6 @@
 # A/B Testing Experiments
 
-## Purpose
-
-Provides simple sandbox for exploring variant testing in Google Optimize.
+This repository provides a simple sandbox for exploring variant testing in Google Optimize and describes some options for how we might use it.
 
 ## What's being explored
 
@@ -73,6 +71,8 @@ Having looked at this code it appears to:
 * make use of the `.async-hide` technique (mentioned above)
 * uses JavaScript to perform a client-side redirect
 * appends a query string with the experiment ID **to all impressions, regardless of whether the user is redirected or not** as well as retain any existing query strings
+
+![Redirect Test in Google Optimize](redirect-optimize.png)
 
 ### Google Optimize Multivariate Test 
 
