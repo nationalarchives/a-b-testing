@@ -8,21 +8,19 @@ This repository provides a simple sandbox for exploring variant testing in Googl
     * Perform experiments with quite fine grained control over cohorts, duration and device characteristics
     * Conduct A/B testing ranging from small changes (involving minor stylistic changes or editorial changes) to larger structural, behaviour and multi-page experiences using the redirect variant.
     * Link these experiments with our goals in Google Analytics
-* From a development perspective these experiments would need to be carefully managed to avoid remnants from previous experiments littering our code base. An update to our [Development Guide](https://github.com/nationalarchives/development-guide) is needed to support this.
+* From a development perspective these experiments would need to be carefully managed to avoid remnants from previous experiments littering our code base. An update to our [Development Guide](https://github.com/nationalarchives/development-guide) is needed to support this
 * This has been a technical dive into Google Optimize, we should look properly into the T&Cs etc and consider any necessary updates to The National Archives' [cookie policy](http://www.nationalarchives.gov.uk/legal/cookies.htm)
 
 -------
 
 ## What's being explored
 
+We're exploring A/B testing using the types described in the [Website Testing 101 White Paper](https://cdn.webtrends.com/files/resources/Whitepaper-WebsiteTesting101-Webtrends-2015.pdf). These are:
+
 * **A/B testing** - one design, group of elements or copy is compared to another, where a portion of live traffic is routed to each. Types of A/B test include:
     * **Template test** - different layouts and/or creative treatment 
     * **New concept test** - comparing two very distinct pages
     * **Funnel test** - comparing different multi-page experiences
-* **Multivariate testing** - the technical and statistical aspects of a multivariate test can seem complicated and results can easily be ruined by poor methodology (WebTrends, Website Testing 101). There are two types of multivariate test **full factorial** and **fractional factorial** but understanding the basics of what constitutes a successfully designed test is important before undertaking one. Three key terms are:
-    * **Factor** an element of the page being tested
-    * **Level** content assigned to a specific factor to be tested
-    * **Experiment** makes use of both factor and level in unique combinations
 
 ## Practical examples using Google Optimize
 
@@ -87,10 +85,6 @@ Having looked at code it appears to:
 * make use of the `.async-hide` technique (mentioned above)
 * uses JavaScript to perform a client-side redirect
 * appends a query string with the experiment ID **to all impressions, regardless of whether the user is redirected or not** as well as retain any existing query strings
-
-### Google Optimize Multivariate Test 
-
-Coming soon...
 
 ## Where testing variants options can be applied
 
