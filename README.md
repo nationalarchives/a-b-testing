@@ -11,6 +11,15 @@ This repository provides a simple sandbox for exploring variant testing in Googl
 * From a development perspective these experiments would need to be carefully managed to avoid remnants from previous experiments littering our code base. An update to our [Development Guide](https://github.com/nationalarchives/development-guide) is needed to support this
 * This has been a technical dive into Google Optimize, we should look properly into the T&Cs etc and consider any necessary updates to The National Archives' [cookie policy](http://www.nationalarchives.gov.uk/legal/cookies.htm)
 
+### Where testing variants options might be applied
+
+|                                               | Optimize A/B       | Redirect           | Example                                                                         |
+| --------------------------------------------- |:-------------:     | :--------:         |:------------------:                                                             |
+| Static URLs                                   | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/about/visit-us/`                            |
+| Static URLs with state passed in query string | :white_check_mark: | :white_check_mark: | `http://discovery.nationalarchives.gov.uk/results/r?_q=nelson&_col=200&_hb=tna` |
+| Static URLs with state passed in hash         | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/webarchive/atoz/#t`                         |
+| Dynamic URLs with state passed in path        | :white_check_mark: |                    | `http://a-b-testing-experiments.azurewebsites.net/details/C4462857 http://a-b-testing-experiments.azurewebsites.net/details/D8206854` |
+
 -------
 
 ## What's being explored
@@ -85,15 +94,6 @@ Having looked at code it appears to:
 * make use of the `.async-hide` technique (mentioned above)
 * uses JavaScript to perform a client-side redirect
 * appends a query string with the experiment ID **to all impressions, regardless of whether the user is redirected or not** as well as retain any existing query strings
-
-## Where testing variants options can be applied
-
-|                                               | Optimize A/B       | Redirect           | Example                                                                         |
-| --------------------------------------------- |:-------------:     | :--------:         |:------------------:                                                             |
-| Static URLs                                   | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/about/visit-us/`                            |
-| Static URLs with state passed in query string | :white_check_mark: | :white_check_mark: | `http://discovery.nationalarchives.gov.uk/results/r?_q=nelson&_col=200&_hb=tna` |
-| Static URLs with state passed in hash         | :white_check_mark: | :white_check_mark: | `http://www.nationalarchives.gov.uk/webarchive/atoz/#t`                         |
-| Dynamic URLs with state passed in path        | :white_check_mark: |                    | `http://a-b-testing-experiments.azurewebsites.net/details/C4462857 http://a-b-testing-experiments.azurewebsites.net/details/D8206854` |
 
 ## Local development with this repository
 
