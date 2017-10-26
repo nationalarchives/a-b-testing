@@ -26,6 +26,8 @@ In practical terms, what Google Optimize describe as a A/B test will be best sui
 
 We have created an active Google Optimize experiment at [http://a-b-testing-experiments.azurewebsites.net/](http://a-b-testing-experiments.azurewebsites.net/) which shows 50% of visitors teal buttons and 50% of visitors black buttons with a teal border 
 
+![A/B Test in Google Optimize](a-b-optimize.png)
+
 #### Information for developers
 
 These changes were made in the Google Optimize dashboard by creating a variant and assigning the related CSS styles. It appears that each 'experiment' requires an amendment to the Google Analytics code snippet on the corresponding page. For example, the A/B test above needed an additional `require()`, a new `<style>` block and a new `(function(a,s,y,n,c,h,i.d.e) { ... })` call: 
@@ -64,6 +66,7 @@ In practical terms within a CMS environment, the Redirect Test will allow us to 
 * where the full URL is known
 
 We have created an active Google Optimize redirect experiment at [http://a-b-testing-experiments.azurewebsites.net/redirect-test/](http://a-b-testing-experiments.azurewebsites.net/redirect-test/) which redirects 50% of users to a different page (within a `/new/` directory) that has a different layout.
+
 
 Having looked at this code it appears to: 
 
