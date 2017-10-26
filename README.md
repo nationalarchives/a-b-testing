@@ -35,7 +35,7 @@ We're exploring A/B testing using the types described in the [Website Testing 10
 
 ### The A/B Test
 
-In practical terms, what Google Optimize describe as a A/B test will be best suited to an A/B Template Test focused on creative treatment that can be achieved through: 
+In practical terms, what Google Optimize describe as a A/B test will be best suited to an **A/B Template Test focused on creative treatment** that can be achieved through: 
 
 * CSS alone
 * Minor text changes (within, for example, buttons but not ideally suited to changes within large blocks of text)
@@ -77,11 +77,11 @@ Note: while this does not seem to significantly impact upon progressive enhancem
 
 ### Google Optimize Redirect Test
 
-In practical terms within a CMS environment, the Redirect Test will allow us to significantly amend the structure, content CSS and JavaScript. It therefore seems most suited to: 
+In practical terms within a CMS environment, the **Redirect Test will allow us to significantly amend the structure, content CSS and JavaScript**. It therefore seems most suited to: 
 * the 'Template Test - Different Layout' and 'New Concept' variants of A/B Tests
 * where the full URL is known
 
-We have created an active Google Optimize redirect experiment at [http://a-b-testing-experiments.azurewebsites.net/redirect-test/](http://a-b-testing-experiments.azurewebsites.net/redirect-test/) which redirects 50% of users to a different page (within a `/new/` directory) that has a different layout.
+We have created an active Google Optimize redirect experiment at [http://a-b-testing-experiments.azurewebsites.net/redirect-test/](http://a-b-testing-experiments.azurewebsites.net/redirect-test/) which redirects 80% of users to a different page (within a `/new/` directory) that has a different layout.
 
 ![Redirect Test in Google Optimize](redirect-optimize.png)
 
