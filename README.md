@@ -1,17 +1,36 @@
 # A/B Testing Experiments
 
-This repository provides a simple sandbox for exploring variant testing in Google Optimize and describes some options for how we might use it.
+We are exploring potential optimizations to our digital services using A/B Testing. This repository:
+ 
+* outlines our current process for variant testing
+* describes some options for its usage
 
-## Summary
+This process is structured around the types of A/B testing described in the [Website Testing 101 White Paper](https://cdn.webtrends.com/files/resources/Whitepaper-WebsiteTesting101-Webtrends-2015.pdf). These are:
 
-* Google Optimize seems to be a good option that will allow us to:
-    * Perform experiments with quite fine grained control over cohorts, duration and device characteristics
-    * Conduct A/B testing ranging from small changes (involving minor stylistic changes or editorial changes) to larger structural, behaviour and multi-page experiences using the redirect variant.
-    * Link these experiments with our goals in Google Analytics
-* From a development perspective these experiments would need to be carefully managed to avoid remnants from previous experiments littering our code base. An update to our [Development Guide](https://github.com/nationalarchives/development-guide) is needed to support this
-* This has been a technical dive into Google Optimize, we should look properly into the T&Cs etc and consider any necessary updates to The National Archives' [cookie policy](http://www.nationalarchives.gov.uk/legal/cookies.htm)
+* **A/B testing** - one design, group of elements or copy is compared to another, where a portion of live traffic is routed to each. Types of A/B test include:
+    * **Template test** - different layouts and/or creative treatment 
+    * **New concept test** - comparing two very distinct pages
+    * **Funnel test** - comparing different multi-page experiences
 
-### Where testing variants options might be applied
+
+A flowchart showing the overall process we are currently working with is [available for download in PDF format](testing-process.pdf) and shown below: 
+
+![Process for conducting an A/B Test](testing-process.png)
+
+This can and should be updated to reflect what we learn from running further experiments.
+
+## Google Optimize
+
+We are currently using Google Optimize because it allows us to:
+
+* Perform experiments with quite fine grained control over cohorts, duration and device characteristics
+* Conduct A/B testing ranging from small changes (involving minor stylistic or editorial changes) to larger structural, behaviour and multi-page experiences using the redirect variant.
+* Link these experiments to our goals in Google Analytics
+
+
+### Selecting the appropriate Google Optimize test variant
+
+Example use cases for the Google Optmize 'Optimize A/B' and 'Redirect' variants are shown below:
 
 |                                               | Optimize A/B       | Redirect           | Example                                                                         |
 | --------------------------------------------- |:-------------:     | :--------:         |:------------------:                                                             |
@@ -22,14 +41,6 @@ This repository provides a simple sandbox for exploring variant testing in Googl
 
 -------
 
-## What's being explored
-
-We're exploring A/B testing using the types described in the [Website Testing 101 White Paper](https://cdn.webtrends.com/files/resources/Whitepaper-WebsiteTesting101-Webtrends-2015.pdf). These are:
-
-* **A/B testing** - one design, group of elements or copy is compared to another, where a portion of live traffic is routed to each. Types of A/B test include:
-    * **Template test** - different layouts and/or creative treatment 
-    * **New concept test** - comparing two very distinct pages
-    * **Funnel test** - comparing different multi-page experiences
 
 ## Practical examples using Google Optimize
 
@@ -40,13 +51,13 @@ In practical terms, what Google Optimize describe as a A/B test will be best sui
 * CSS alone
 * Minor text changes (within, for example, buttons but not ideally suited to changes within large blocks of text)
 
-We have created an active Google Optimize experiment at [http://a-b-testing-experiments.azurewebsites.net/](http://a-b-testing-experiments.azurewebsites.net/) which shows 50% of visitors teal buttons and 50% of visitors black buttons with a teal border 
+During the technical spike we created an experiment that showed 50% of visitors teal buttons and 50% of visitors black buttons with a teal border:
 
 ![A/B Test in Google Optimize](a-b-optimize.png)
 
 #### Information for developers
 
-These changes were made in the Google Optimize dashboard by creating a variant and assigning the related CSS styles. It appears that each 'experiment' requires an amendment to the Google Analytics code snippet on the corresponding page. For example, the A/B test above needed an additional `require()`, a new `<style>` block and a new `(function(a,s,y,n,c,h,i.d.e) { ... })` call: 
+This was achieved via the Google Optimize dashboard by creating a variant and assigning the related CSS styles. Each 'experiment' requires an amendment to the Google Analytics code snippet on the corresponding page. For example, the A/B test above needed an additional `require()`, a new `<style>` block and a new `(function(a,s,y,n,c,h,i.d.e) { ... })` call: 
 
 ```html
 <style>.async-hide { opacity: 0 !important} </style>
@@ -77,30 +88,11 @@ Note: while this does not seem to significantly impact upon progressive enhancem
 
 ### Google Optimize Redirect Test
 
-In practical terms within a CMS environment, the **Redirect Test will allow us to significantly amend the structure, content CSS and JavaScript**. It therefore seems most suited to: 
+In practical terms within a CMS environment, the **Redirect Test will allow us to significantly amend the structure, content CSS and JavaScript**. It therefore seems most suited to:
+ 
 * the 'Template Test - Different Layout' and 'New Concept' variants of A/B Tests
 * where the full URL is known
 
-We have created an active Google Optimize redirect experiment at [http://a-b-testing-experiments.azurewebsites.net/redirect-test/](http://a-b-testing-experiments.azurewebsites.net/redirect-test/) which redirects 80% of users to a different page (within a `/new/` directory) that has a different layout.
+During the technical spike we created a Google Optimize experiment that redirected 80% of users to a different page (within a `/new/` directory) that has a different layout.
 
 ![Redirect Test in Google Optimize](redirect-optimize.png)
-
-#### Information for developers
-
-This test required the creation of a new page, inclusion of the necessary experiment code (as above) and setting up the redirect in Google Optimize.
-
-Having looked at code it appears to: 
-
-* make use of the `.async-hide` technique (mentioned above)
-* uses JavaScript to perform a client-side redirect
-* appends a query string with the experiment ID **to all impressions, regardless of whether the user is redirected or not** as well as retain any existing query strings
-
-## Local development with this repository
-
-### Development environment
-
-Simply clone this repository to your development machine and start a PHP development server with `php -S localhost:8000`.
-
-### Cloud deployment
-
-There is an Azure website at [http://a-b-testing-experiments.azurewebsites.net/](http://a-b-testing-experiments.azurewebsites.net/) tracking `master` on GitHub.
